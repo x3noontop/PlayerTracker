@@ -53,6 +53,7 @@ Colors = [
     }
 ]
 
+# ty for the codes notfish
 Codes = [
     "TYLERVR", "ALECVR", "LUCIO", "DEEP", "JUAN", "JUANGTAG", "MELT", "JMAN", "JMANCURLY", "ELLIOT",
     "ELLIOT1", "ELLIOT2", "VMT", "K9", "HUNT", "MODS", "MOD", "MEET2", "MEET3", "GTAG", "MEET4",
