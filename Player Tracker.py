@@ -6,7 +6,6 @@ import asyncio
 
 init()
 
-
 print("""
 __________.__                           ___________                     __                 
 \______   \  | _____  ___.__. __________\__    ___/___________    ____ |  | __ ___________ 
@@ -17,11 +16,11 @@ __________.__                           ___________                     __
                                         https://github.com/sudzythegoat/PlayerTracker
 """)
 
-TrackerName = string(input("Enter the name of your tracker:\n")
-SessionTickets = string(input("Enter your session ticket:\n")
-WEBHOOK_URL = string(input("Enter your tracker webhook url:\n")
-STATUS_WEBHOOK_URL = string(input("Enter your webhook url that will recieve status updates:\n")
-
+TrackerName = string(input("Enter the name of your tracker:\n"))
+SessionTickets = string(input("Enter your session ticket:\n"))
+WEBHOOK_URL = string(input("Enter your tracker webhook url:\n"))
+STATUS_WEBHOOK_URL = string(input("Enter your webhook url that will recieve status updates:\n"))
+ColorHexxed = string(input("Enter embed color (hex):\n"))
 
 Cosmetics = [
     {
@@ -94,23 +93,23 @@ def FreeWebhook(item, code, region, player_count, board_position, image_url, con
         webhook_data = {
             "content": content,
             "embeds": [{
-                "title": f"🔍 {item} Detected 🔍",
-                "description": f"Item detected by {TrackerName}",
-                "color": 0xFFD700,
+                "title": f"@everyone {item} found",
+                "color": ColorHexxed,
                 "fields": [
-                    {"name": "💫 Item", "value": f"```{item}```", "inline": False},
-                    {"name": "🌍 Location", "value": f"```Room: {code}\nRegion: {region}```", "inline": True},
-                    {"name": "📈 Room Data", "value": f"```Players: {player_count}\nPosition: {board_position}```", "inline": True}
+                    {"name": "**Cosmetic: **", "value": f"```{item}```", "inline": False},
+                     {"name": "**Code: **", "value": f"```{code}```", "inline": False},
+                    {"name": "**Region: **", "value": f"```{region}```", "inline": False},
+                    {"name": "**Player Count: **", "value": f"```{player_count}```", "inline": False}
                 ],
                 "image": {"url": image_url},
-                "footer": {"text": f"src by elian | discord.gg/4wnShQZA4E"}
+                "footer": {"text": TrackerName}
             }]
         }
 
         response = requests.post(WEBHOOK_URL, json=webhook_data)
         response.raise_for_status()
     except Exception as e:
-        print(Fore.RED + f"Error in FreeWebhook: {str(e)}")
+        print(Fore.RED + f"Error: {str(e)}")
 
 def StartWebhook():
     try:
