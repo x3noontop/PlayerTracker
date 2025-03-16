@@ -6,10 +6,21 @@ import asyncio
 
 init()
 
-TrackerName = "Your Tracker"
-SessionTickets = ["YOUR_SESSION_TICKET_HERE"]
-WEBHOOK_URL = "YOUR_WEBHOOK_URL"
-STATUS_WEBHOOK_URL = "YOUR_STATUS_WEBHOOK_URL"
+print("""
+__________.__                           ___________                     __                 
+\______   \  | _____  ___.__. __________\__    ___/___________    ____ |  | __ ___________ 
+ |     ___/  | \__  \<   |  |/ __ \_  __ \|    |  \_  __ \__  \ _/ ___\|  |/ // __ \_  __ \
+ |    |   |  |__/ __ \\___  \  ___/|  | \/|    |   |  | \// __ \\  \___|    <\  ___/|  | \/
+ |____|   |____(____  / ____|\___  >__|   |____|   |__|  (____  /\___  >__|_ \\___  >__|   
+                    \/\/         \/                           \/     \/     \/    \/       
+                                        https://github.com/sudzythegoat/PlayerTracker
+""")
+
+TrackerName = string(input("Enter the name of your tracker:\n")
+SessionTickets = string(input("Enter your session ticket:\n")
+WEBHOOK_URL = string(input("Enter your tracker webhook url:\n")
+STATUS_WEBHOOK_URL = string(input("Enter your webhook url that will recieve status updates:\n")
+
 
 Cosmetics = [
     {
