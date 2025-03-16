@@ -6,7 +6,7 @@ import asyncio
 
 init()
 
-print("""
+print(Fore.CYAN + """
 __________.__                           ___________                     __                 
 \______   \  | _____  ___.__. __________\__    ___/___________    ____ |  | __ ___________ 
  |     ___/  | \__  \<   |  |/ __ \_  __ \|    |  \_  __ \__  \ _/ ___\|  |/ // __ \_  __ \
@@ -48,7 +48,7 @@ Cosmetics = [
 Colors = [
     {
         "ColorName": "Red",
-        "ColorHex": 0xff0000,
+        "ColorHex": ColorHexxed,
         "Activated": True,
     }
 ]
@@ -89,7 +89,7 @@ def get_active_color():
             return ColorData['ColorHex']
     return 0x000000
 
-def FreeWebhook(item, code, region, player_count, board_position, image_url, content="@everyone"):
+def posttrack(item, code, region, player_count, board_position, image_url, content="@everyone"):
     try:
         webhook_data = {
             "content": content,
@@ -112,7 +112,7 @@ def FreeWebhook(item, code, region, player_count, board_position, image_url, con
     except Exception as e:
         print(Fore.RED + f"Error: {str(e)}")
 
-def StartWebhook():
+def Start():
     try:
         Color = get_active_color()
         current_time = time.strftime("%H:%M:%S", time.localtime())
@@ -132,7 +132,7 @@ def StartWebhook():
     except Exception as e:
         print(Fore.RED + f"Error in StartWebhook: {str(e)}")
 
-def CheckCode():
+def track():
     try:
         for code in Codes:
             SessionTicket = random.choice(SessionTickets)
@@ -173,7 +173,7 @@ def CheckCode():
                                 if CosmeticData['CosmeticId'] in concat:
                                     content = "@everyone"
                                     image_url = CosmeticData['ImageURL']
-                                    FreeWebhook(CosmeticData['CosmeticName'], code, region, player_count, board_position, image_url, content)
+                                    posttrack(CosmeticData['CosmeticName'], code, region, player_count, board_position, image_url, content)
                                     print(Fore.GREEN + f"Found {CosmeticData['CosmeticName']} in code: {code}")
 
                     elif requestjson['code'] == 429:
@@ -189,13 +189,13 @@ def CheckCode():
         print(Fore.RED + f"Error in CheckCode: {str(e)}")
 
 if __name__ == "__main__":
-    StartWebhook()
+    Start()
     while True:
         try:
-            CheckCode()
+            track()
             time.sleep(1)
         except Exception as e:
-            print(Fore.RED + f"Error in main loop: {e}")
-            print(Fore.YELLOW + "Retrying in 30 seconds...")
-            time.sleep(30)
+            print(Fore.RED + f"Error: {e}")
+            print(Fore.YELLOW + "Retrying...")
+            time.sleep(1)
             continue
