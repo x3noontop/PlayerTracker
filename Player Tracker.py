@@ -117,15 +117,14 @@ def StartWebhook():
         current_time = time.strftime("%H:%M:%S", time.localtime())
 
         free_embed = [{
-            "title": "🔍 System Initialization",
-            "description": f"The {TrackerName} is now operational and scanning.",
-            "color": 0x00FF00,
+            "title": "{TrackerName} has been started",
+            "color": ColorHexxed,
             "fields": [
-                {"name": "📊 Parameters", "value": f"```Total Codes: {len(Codes)}\nActive Tickets: {len(SessionTickets)}\nTargeted Items: {len(Cosmetics)}```", "inline": False},
-                {"name": "💫 Status", "value": "```🟢 Active```", "inline": True},
-                {"name": "🕒 Time", "value": f"```{current_time}```", "inline": True},
+                {"name": "**Tracker Info**", "value": f"```Codes: {len(Codes)}```", "inline": True},
+                {"name": "**Status**", "value": "```ONLINE```", "inline": True},
+                {"name": "**Time**", "value": f"```{current_time}```", "inline": True},
             ],
-            "footer": {"text": f"src by elian | discord.gg/4wnShQZA4E"}
+            "footer": {"text": f"github.com/sudzythegoat/PlayerTracker"}
         }]
 
         requests.post(STATUS_WEBHOOK_URL, json={"content": "", "embeds": free_embed})
