@@ -16,12 +16,12 @@ __________.__                           ___________                     __
                                         https://github.com/sudzythegoat/PlayerTracker
 """)
 
-TrackerName = input("Enter the name of your tracker:\n")
-SessionTicket = input("Enter your session ticket:\n")
-WEBHOOK_URL = input("Enter your tracker webhook url:\n")
-STATUS_WEBHOOK_URL = input("Enter your webhook url that will receive status updates:\n")
-ColorHexxed = input("Enter embed color (hex):\n")
-StatusRole = input("Enter role (id) to get pinged when tracker is started:\n")
+TrackerName = input("Enter the name of your tracker:\n[>] ")
+SessionTicket = input("Enter your session ticket:\n[>] ")
+WEBHOOK_URL = input("Enter your tracker webhook url:\n[>] ")
+STATUS_WEBHOOK_URL = input("Enter your webhook url that will receive status updates:\n[>] ")
+ColorHexxed = input("Enter embed color (hex):\n[>] ")
+StatusRole = input("Enter role (id) to get pinged when tracker is started:\n[>] ")
 
 SharedGroupID = "63FDD"
 
