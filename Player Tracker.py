@@ -16,11 +16,11 @@ __________.__                           ___________                     __
                                         https://github.com/sudzythegoat/PlayerTracker
 """)
 
-TrackerName = input("Enter the name of your tracker:\n[>] ")
+TrackerName = input("HIDD3N:\n[>] ")
 SessionTicket = input("Enter your session ticket:\n[>] ")
-WEBHOOK_URL = input("Enter your tracker webhook url:\n[>] ")
-STATUS_WEBHOOK_URL = input("Enter your webhook url that will receive status updates:\n[>] ")
-ColorHexxed = input("Enter embed color (hex):\n[>] ")
+WEBHOOK_URL = input("https://discordapp.com/api/webhooks/1351306098988286044/daZu5Qmi1Vn6s32qSG1EYWIeqf9Fni7S8_zALVP31woHKsLfQD6JbW8abVEKkwnDTBN_:\n[>] ")
+STATUS_WEBHOOK_URL = input("https://discordapp.com/api/webhooks/1351307971195305984/retEVH7S1fX0vio4y4QK039slgXRdsUyereaSxyD_hRJJFhy4oJG2uNafs5BL8mneJga:\n[>] ")
+ColorHexxed = input("FF0000(hex):\n[>] ")
 StatusRole = input("Enter role (id) to get pinged when tracker is started:\n[>] ")
 
 SharedGroupID = "63FDD"
