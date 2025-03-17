@@ -130,7 +130,7 @@ def Start():
         current_time = time.strftime("%H:%M:%S", time.localtime())
 
         free_embed = [{
-            "title": "{TrackerName} has been started",
+            "title": f"{TrackerName} has been started",
             "color": ColorHexxed,
             "fields": [
                 {"name": "**Tracker Info**", "value": f"```Codes: {len(Codes)}```", "inline": True},
