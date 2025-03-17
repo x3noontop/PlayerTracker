@@ -97,7 +97,7 @@ def get_track_time():
 formatted_time = get_track_time()
 print(formatted_time)
 
-def posttrack(item, code, region, player_count, board_position, image_url, content=f"@everyone {item} found"):
+def posttrack(item, code, region, player_count, board_position, image_url, content=f"@everyone"):
     tracked_formatted = get_track_time()
     try:
         webhook_data = {
@@ -121,7 +121,7 @@ def posttrack(item, code, region, player_count, board_position, image_url, conte
         requests.post(WEBHOOK_URL, json=webhook_data)
 
     except Exception as e:
-        print(Fore.RED + f"Error posting track: {e}")
+        print(Fore.RED + f"Error sendind webhook: {e}")
 
 
 def Start():
@@ -172,9 +172,9 @@ def track():
                         board_position = 0
 
                         if player_count > 0:
-                            print(Fore.LIGHTBLACK_EX + f"Checked Room {code}{region} with {player_count} players.")
+                            print(Fore.LIGHTBLACK_EX + f"Checked Room {code}{region} with {player_count} players")
                         else:
-                            print(Fore.LIGHTBLACK_EX + f"Checked Room {code}{region} - Empty room (0 players).")
+                            print(Fore.LIGHTBLACK_EX + f"{code}{region} is empty")
 
                         for key, value in room_data.items():
                             board_position += 1
@@ -197,7 +197,7 @@ def track():
                     continue
 
     except Exception as e:
-        print(Fore.RED + f"Error in CheckCode: {str(e)}")
+        print(Fore.RED + f"Error in track function: {str(e)}")
 
 if __name__ == "__main__":
     Start()
