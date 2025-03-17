@@ -16,11 +16,12 @@ __________.__                           ___________                     __
                                         https://github.com/sudzythegoat/PlayerTracker
 """)
 
-TrackerName = string(input("Enter the name of your tracker:\n"))
-SessionTicket = string(input("Enter your session ticket:\n"))
-WEBHOOK_URL = string(input("Enter your tracker webhook url:\n"))
-STATUS_WEBHOOK_URL = string(input("Enter your webhook url that will recieve status updates:\n"))
-ColorHexxed = string(input("Enter embed color (hex):\n"))
+TrackerName = input("Enter the name of your tracker:\n")
+SessionTicket = input("Enter your session ticket:\n")
+WEBHOOK_URL = input("Enter your tracker webhook url:\n")
+STATUS_WEBHOOK_URL = input("Enter your webhook url that will receive status updates:\n")
+ColorHexxed = input("Enter embed color (hex):\n")
+StatusRole = input("Enter role (id) to get pinged when tracker is started:\n")
 
 Cosmetics = [
     {
@@ -89,27 +90,33 @@ def get_active_color():
             return ColorData['ColorHex']
     return 0x000000
 
+def get_track_time():
+    unix_timestamp = int(time.time())
+    return f"<t:{unix_timestamp}:R>"
+
+formatted_time = get_track_time()
+print(formatted_time)
+
 def posttrack(item, code, region, player_count, board_position, image_url, content=f"@everyone {item} found"):
+    tracked_formatted = get_track_time()
     try:
         webhook_data = {
             "content": content,
             "embeds": [{
                 "title": f"{item} was found",
-                "color": ColorHexxed,
+                "color": int(ColorHexxed.lstrip('#'), 16),
                 "fields": [
                     {"name": "**Code: **", "value": f"```{code}```", "inline": False},
                     {"name": "**Region: **", "value": f"```{region}```", "inline": False},
-                    {"name": "**Player Count: **", "value": f"```{player_count}```", "inline": False}
+                    {"name": "**Player Count: **", "value": f"```{player_count}```", "inline": False},
+                    {"name": "**Position: **", "value": f"```{board_position}```", "inline": False},
+                    {"name": "**Tracked **", "value": tracked_formatted, "inline": False}
                 ],
-                "image": {"url": image_url},
-                "footer": {"text": TrackerName}
+                "image": {"url": image_url}
             }]
         }
-
-        response = requests.post(WEBHOOK_URL, json=webhook_data)
-        response.raise_for_status()
     except Exception as e:
-        print(Fore.RED + f"Error: {str(e)}")
+        print(f"Error in posttrack: {e}")
 
 def Start():
     try:
@@ -127,9 +134,9 @@ def Start():
             "footer": {"text": f"github.com/sudzythegoat/PlayerTracker"}
         }]
 
-        requests.post(STATUS_WEBHOOK_URL, json={"content": "", "embeds": free_embed})
+        requests.post(STATUS_WEBHOOK_URL, json={"content": f"<@{StatusRole}>", "embeds": free_embed})
     except Exception as e:
-        print(Fore.RED + f"Error in StartWebhook: {str(e)}")
+        print(Fore.RED + f"Error in Start: {str(e)}")
 
 def track():
     try:
