@@ -23,6 +23,8 @@ STATUS_WEBHOOK_URL = input("Enter your webhook url that will receive status upda
 ColorHexxed = input("Enter embed color (hex):\n")
 StatusRole = input("Enter role (id) to get pinged when tracker is started:\n")
 
+SharedGroupID = "63FDD"
+
 Cosmetics = [
     {
         "CosmeticName": "Stick",
@@ -97,7 +99,7 @@ def get_track_time():
 formatted_time = get_track_time()
 print(formatted_time)
 
-def posttrack(item, code, region, player_count, board_position, image_url, content=f"@everyone"):
+def Send(item, code, region, player_count, board_position, image_url, content=f"@everyone"):
     tracked_formatted = get_track_time()
     try:
         webhook_data = {
@@ -144,7 +146,7 @@ def Start():
     except Exception as e:
         print(Fore.RED + f"Error in Start: {str(e)}")
 
-def track():
+def Track():
     try:
         for code in Codes:
             for region in ['EU', 'US', 'USW']:
@@ -154,7 +156,7 @@ def track():
                     json = {"SharedGroupId": code + region}
 
                     response = requests.post(
-                        url="https://63FDD.playfabapi.com/Client/GetSharedGroupData",
+                        url=f"https://{SharedGroupID}.playfabapi.com/Client/GetSharedGroupData",
                         headers=headers,
                         json=json,
                         timeout=10
@@ -184,7 +186,7 @@ def track():
                                 if CosmeticData['CosmeticId'] in concat:
                                     content = "@everyone"
                                     image_url = CosmeticData['ImageURL']
-                                    posttrack(CosmeticData['CosmeticName'], code, region, player_count, board_position, image_url, content)
+                                    send(CosmeticData['CosmeticName'], code, region, player_count, board_position, image_url, content)
                                     print(Fore.GREEN + f"Found {CosmeticData['CosmeticName']} in code: {code}")
 
                     elif requestjson['code'] == 429:
@@ -203,7 +205,7 @@ if __name__ == "__main__":
     Start()
     while True:
         try:
-            track()
+            Track()
             time.sleep(1)
         except Exception as e:
             print(Fore.RED + f"Error: {e}")
