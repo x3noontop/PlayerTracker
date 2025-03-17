@@ -17,7 +17,7 @@ __________.__                           ___________                     __
 """)
 
 TrackerName = string(input("Enter the name of your tracker:\n"))
-SessionTickets = string(input("Enter your session ticket:\n"))
+SessionTicket = string(input("Enter your session ticket:\n"))
 WEBHOOK_URL = string(input("Enter your tracker webhook url:\n"))
 STATUS_WEBHOOK_URL = string(input("Enter your webhook url that will recieve status updates:\n"))
 ColorHexxed = string(input("Enter embed color (hex):\n"))
@@ -135,7 +135,6 @@ def Start():
 def track():
     try:
         for code in Codes:
-            SessionTicket = random.choice(SessionTickets)
             for region in ['EU', 'US', 'USW']:
                 try:
                     print(Fore.CYAN + f"Checking room code: {code}{region}")
