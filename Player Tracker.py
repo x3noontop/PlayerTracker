@@ -83,7 +83,6 @@ def get_track_time():
     return f"<t:{unix_timestamp}:R>"
 
 formatted_time = get_track_time()
-print(formatted_time)
 
 def Send(item, code, region, player_count, board_position, image_url, content=f"@everyone"):
     tracked_formatted = get_track_time()
@@ -159,9 +158,9 @@ def Track():
                         board_position = 0
 
                         if player_count > 0:
-                            print(Fore.LIGHTBLACK_EX + f"Checked Room {code}{region} with {player_count} players")
+                            print(Fore.BLUE + f"Checked Room {code}{region} with {player_count} players")
                         else:
-                            print(Fore.LIGHTBLACK_EX + f"{code}{region} is empty")
+                            print(Fore.BLUE + f"{code}{region} is empty")
 
                         for key, value in room_data.items():
                             board_position += 1
