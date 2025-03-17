@@ -89,16 +89,15 @@ def get_active_color():
             return ColorData['ColorHex']
     return 0x000000
 
-def posttrack(item, code, region, player_count, board_position, image_url, content="@everyone"):
+def posttrack(item, code, region, player_count, board_position, image_url, content=f"@everyone {item} found"):
     try:
         webhook_data = {
             "content": content,
             "embeds": [{
-                "title": f"@everyone {item} found",
+                "title": f"{item} was found",
                 "color": ColorHexxed,
                 "fields": [
-                    {"name": "**Cosmetic: **", "value": f"```{item}```", "inline": False},
-                     {"name": "**Code: **", "value": f"```{code}```", "inline": False},
+                    {"name": "**Code: **", "value": f"```{code}```", "inline": False},
                     {"name": "**Region: **", "value": f"```{region}```", "inline": False},
                     {"name": "**Player Count: **", "value": f"```{player_count}```", "inline": False}
                 ],
