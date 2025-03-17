@@ -104,19 +104,25 @@ def posttrack(item, code, region, player_count, board_position, image_url, conte
             "content": content,
             "embeds": [{
                 "title": f"{item} was found",
-                "color": int(ColorHexxed.lstrip('#'), 16),
+                "color": int(ColorHexxed, 16),
                 "fields": [
                     {"name": "**Code: **", "value": f"```{code}```", "inline": False},
                     {"name": "**Region: **", "value": f"```{region}```", "inline": False},
                     {"name": "**Player Count: **", "value": f"```{player_count}```", "inline": False},
-                    {"name": "**Position: **", "value": f"```{board_position}```", "inline": False},
-                    {"name": "**Tracked **", "value": tracked_formatted, "inline": False}
+                    {"name": "**Position: **", "value": f"```{board_position}```", "inline": False}
                 ],
-                "image": {"url": image_url}
+                "image": {"url": image_url},
+                "footer": {
+                    "text": f"Tracked by {TrackerName} {tracked_formatted}",
+                }
             }]
         }
+
+        requests.post(WEBHOOK_URL, json=webhook_data)
+
     except Exception as e:
-        print(f"Error in posttrack: {e}")
+        print(Fore.RED + f"Error posting track: {e}")
+
 
 def Start():
     try:
