@@ -48,14 +48,6 @@ Cosmetics = [
     }
 ]
 
-Colors = [
-    {
-        "ColorName": "Red",
-        "ColorHex": ColorHexxed,
-        "Activated": True,
-    }
-]
-
 # ty for the codes notfish
 Codes = [
     "TYLERVR", "ALECVR", "LUCIO", "DEEP", "JUAN", "JUANGTAG", "MELT", "JMAN", "JMANCURLY", "ELLIOT",
@@ -85,12 +77,6 @@ Codes = [
     "HAVEN", "VR", "WEAREVR", "FINGER", "PAINTER", "ADMIN", "STAFF", "CRASH", "YOUTUBE",
     "MODDING", "LEMMING"
 ]
-
-def get_active_color():
-    for ColorData in Colors:
-        if ColorData['Activated']:
-            return ColorData['ColorHex']
-    return 0x000000
 
 def get_track_time():
     unix_timestamp = int(time.time())
@@ -128,7 +114,6 @@ def Send(item, code, region, player_count, board_position, image_url, content=f"
 
 def Start():
     try:
-        Color = get_active_color()
         current_time = time.strftime("%H:%M:%S", time.localtime())
 
         free_embed = [{
